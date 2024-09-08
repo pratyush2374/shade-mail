@@ -17,8 +17,11 @@ async function connectToDB(): Promise<void> {
             process.env.MONGODB_URI || ""
         );
 
+        //Console logging to see the what it has
+        console.log(connectionInstance);
+        
         connection.isConnected = connectionInstance.connections[0].readyState;
-
+        
         console.log("Database connection successfull !! :)");
     } catch (error) {
         console.log("Database connection failed ", error);

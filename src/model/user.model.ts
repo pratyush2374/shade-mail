@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { Message, messageSchema } from "./message.model";
+import { MessageInterface, messageSchema } from "./message.model";
 
 export interface UserInterface extends Document {
     username: string;
@@ -9,7 +9,7 @@ export interface UserInterface extends Document {
     verifyCodeExpiry: Date;
     isVerified: boolean;
     isAcceptingMessage: boolean;
-    messages: Message[];
+    messages: MessageInterface[];
 }
 
 const userSchema: Schema<UserInterface> = new Schema(

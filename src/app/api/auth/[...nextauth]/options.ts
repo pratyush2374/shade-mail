@@ -66,6 +66,7 @@ export const authOptions: NextAuthOptions = {
         },
 
         async session({ session, token }) {
+            //Modifying session by injecting token data into it
             if (token) {
                 session.user._id = token._id;
                 session.user.isVerified = token.isVerified;
