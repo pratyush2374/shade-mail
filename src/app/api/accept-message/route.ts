@@ -6,6 +6,7 @@ import { User as NextUser } from "next-auth";
 
 export async function POST(request: Request) {
     await connectToDB();
+    
 
     const session = await getServerSession(authOptions);
 
