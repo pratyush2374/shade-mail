@@ -7,17 +7,22 @@ export async function middleware(request: NextRequest) {
     const token = await getToken({ req: request });
     const url = request.nextUrl;
 
+    // Redirect to /dashboard if token exists and user is trying to access auth or public pages
     if (
         token &&
         (url.pathname.startsWith("/sign-in") ||
             url.pathname.startsWith("/sign-up") ||
-            url.pathname.startsWith("/verify") ||
-            url.pathname.startsWith("/"))
+            url.pathname.startsWith("/verify"))
     ) {
         return NextResponse.redirect(new URL("/dashboard", request.url));
     }
-    // return NextResponse.redirect(new URL("/home", request.url));
 
+    // Allow access to the dashboard if token exists, do not redirect
+    if (token && url.pathname.startsWith("/dashboard")) {
+        return NextResponse.next();
+    }
+
+    // Redirect to /sign-in if no token exists and trying to access protected pages
     if (!token && url.pathname.startsWith("/dashboard")) {
         return NextResponse.redirect(new URL("/sign-in", request.url));
     }

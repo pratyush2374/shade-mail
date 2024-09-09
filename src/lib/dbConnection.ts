@@ -18,8 +18,7 @@ async function connectToDB(): Promise<void> {
         );
 
         //Console logging to see the what it has
-        console.log(connectionInstance);
-        
+        // console.log(connectionInstance);        
         connection.isConnected = connectionInstance.connections[0].readyState;
         
         console.log("Database connection successfull !! :)");

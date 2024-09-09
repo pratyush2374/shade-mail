@@ -2,14 +2,14 @@ import connectToDB from "@/lib/dbConnection";
 import User from "@/model/user.model";
 import { z } from "zod";
 import { usernameValidation } from "@/schemas/signUp.schema";
-import { verifySchema } from "@/schemas/verify.schema";
+import { verifySchema, verifySchemaNO } from "@/schemas/verify.schema";
 
 export async function POST(request: Request) {
     await connectToDB();
 
     const verifyCodeQuerySchema = z.object({
         username: usernameValidation,
-        code: verifySchema,
+        code: verifySchemaNO,
     });
 
     try {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
             return Response.json(
                 {
                     success: false,
-                    message: "Incorrect code or username",
+                    message: "Incorrect code or username 1st",
                 },
                 {
                     status: 400,

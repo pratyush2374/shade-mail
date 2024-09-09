@@ -1,5 +1,13 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
-  
+const LandingPage = () => {
+  return (
+    <>
+      <div className="land">
+        <h1>Landing page</h1>
+      </div>
+    </>
+  );
 }
+
+export default LandingPage;

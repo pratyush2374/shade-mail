@@ -21,8 +21,8 @@ export const authOptions: NextAuthOptions = {
                 try {
                     const user = await User.findOne({
                         $or: [
-                            { email: credentails.identifier.email },
-                            { username: credentails.identifier.name },
+                            { email: credentails.identifier },
+                            { username: credentails.identifier },
                         ],
                     });
 
@@ -67,7 +67,7 @@ export const authOptions: NextAuthOptions = {
 
         async session({ session, token }) {
             //Modifying session by injecting token data into it
-            if (token) {
+            if (session.user) {
                 session.user._id = token._id;
                 session.user.isVerified = token.isVerified;
                 session.user.isAcceptingMessage = token.isAcceptingMessage;
